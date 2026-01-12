@@ -1,0 +1,164 @@
+/* =======================
+    Global Styles
+======================= */
+* {
+    box-sizing: border-box; /* includes padding/border in element's total width/height */
+    margin: 0;               /* remove default margin */
+    padding: 0;              /* remove default padding */
+    font-family: 'Lato', sans-serif; /* default font for body */
+}
+
+body {
+    background: #fff3eb; /* soft vintage cream background */
+    display: flex;        /* use flexbox to center chat container */
+    justify-content: center; /* horizontally center */
+    align-items: center;      /* vertically center */
+    height: 100vh;            /* full viewport height */
+    color: #333;              /* default text color */
+}
+
+/* =======================
+    Chat Container
+======================= */
+.chat-container {
+    width: 1500px;             /* fixed width of chat box */
+    max-width: 95%;           /* responsive max width */
+    height: 700px;            /* fixed height */
+    background: #fffdf8;      /* elegant cream background */
+    border-radius: 20px;      /* rounded corners */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.08); /* soft shadow for depth */
+    display: flex;            /* flex container for column layout */
+    flex-direction: column;   /* stack header, body, input vertically */
+    overflow: hidden;         /* clip overflowing content */
+    animation: fadeIn 1s ease forwards; /* fade-in animation on load */
+}
+
+/* =======================
+    Header
+======================= */
+.chat-header {
+    background: #c9a88c; /* vintage warm tone header */
+    padding: 20px;        /* spacing inside header */
+    text-align: center;   /* center the text */
+    font-family: 'Playfair Display', serif; /* elegant serif font */
+    font-weight: 700;     /* bold text */
+    font-size: 1.8rem;   /* bigger font size */
+    color: #fff;          /* white text */
+    letter-spacing: 1px;  /* small spacing between letters */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.08); /* subtle shadow under header */
+    position: relative;   /* for pseudo-element positioning */
+}
+
+.chat-header::after {
+    content: '';             /* empty content for decorative line */
+    position: absolute;      /* absolute positioning relative to header */
+    bottom: 0;               /* place at bottom of header */
+    left: 50%;               /* center horizontally */
+    transform: translateX(-50%); /* adjust for exact center */
+    width: 50%;              /* length of the line */
+    height: 3px;             /* thickness */
+    background: #fff;        /* color of the line */
+    border-radius: 2px;      /* rounded ends */
+}
+
+/* =======================
+    Chat Body
+======================= */
+.chat-body {
+    flex: 1;                     /* take remaining space */
+    padding: 20px;               /* inner spacing */
+    overflow-y: auto;            /* scrollable vertically */
+    display: flex;               /* flex column for messages */
+    flex-direction: column;      
+    gap: 15px;                   /* space between messages */
+    scroll-behavior: smooth;     /* smooth scroll when new messages added */
+}
+
+/* Messages */
+.message {
+    max-width: 70%;              /* messages don't take full width */
+    padding: 12px 18px;          /* inner padding for messages */
+    border-radius: 20px;         /* rounded corners for messages */
+    font-size: 0.95rem;          /* slightly smaller text */
+    line-height: 1.4;            /* spacing between lines */
+    position: relative;           /* for any pseudo-elements or future icons */
+    animation: slideIn 0.5s ease forwards; /* slide-in animation on appearing */
+}
+
+.message.user {
+    align-self: flex-end;        /* align user messages to the right */
+    background: #c9a88c;         /* user bubble color */
+    color: #fff;                 /* text color */
+    border-bottom-right-radius: 0; /* cut corner for chat bubble style */
+}
+
+.message.bot {
+    align-self: flex-start;      /* align bot messages to the left */
+    background: #f3ece4;         /* bot bubble color */
+    color: #333;                 /* text color */
+    border-bottom-left-radius: 0; /* cut corner for chat bubble style */
+}
+
+/* =======================
+    Input Area
+======================= */
+.chat-input {
+    display: flex;               /* flex container for input and button */
+    padding: 15px;               /* inner spacing */
+    background: #fffdf8;         /* same cream as container */
+    border-top: 1px solid #ddd;  /* subtle top border */
+}
+
+.chat-input input {
+    flex: 1;                     /* input takes full remaining space */
+    padding: 12px 18px;          /* spacing inside input */
+    border-radius: 25px;         /* rounded input */
+    border: 1px solid #c9a88c;  /* border color */
+    outline: none;               /* remove default focus outline */
+    font-size: 1rem;             /* readable font size */
+    transition: all 0.3s ease;   /* smooth focus transitions */
+}
+
+.chat-input input:focus {
+    border-color: #b58c70;       /* darker border on focus */
+    box-shadow: 0 0 10px rgba(181,140,112,0.3); /* subtle glow on focus */
+}
+
+.chat-input button {
+    margin-left: 10px;           /* space between input and button */
+    padding: 12px 18px;          /* button padding */
+    background: #c9a88c;         /* button color */
+    border: none;                /* remove default border */
+    border-radius: 25px;         /* rounded button */
+    color: #fff;                 /* text color */
+    font-weight: 600;            /* bold text */
+    cursor: pointer;             /* pointer on hover */
+    transition: all 0.3s ease;   /* smooth hover transition */
+}
+
+.chat-input button:hover {
+    background: #b58c70;                 /* darker on hover */
+    transform: translateY(-2px);         /* subtle lift effect */
+    box-shadow: 0 5px 15px rgba(181,140,112,0.3); /* shadow effect */
+}
+
+/* Scrollbar Styling */
+.chat-body::-webkit-scrollbar {
+    width: 6px;                         /* thin scrollbar */
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background: #c9a88c;                 /* scrollbar color */
+    border-radius: 3px;                   /* round scrollbar thumb */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.95);}  /* start smaller & invisible */
+    100% { opacity: 1; transform: scale(1);}   /* fully visible and normal size */
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(20px);} /* start lower and invisible */
+    100% { opacity: 1; transform: translateY(0);}  /* slide to position */
+}
